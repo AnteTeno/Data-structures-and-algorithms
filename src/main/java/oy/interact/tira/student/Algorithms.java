@@ -14,6 +14,16 @@ public class Algorithms {
 
    public static <T extends Comparable<T>> void insertionSort(T[] array) {
       // TODO: Implement this.
+
+      int i = 1;
+      while(i < array.length) {
+         int j = i;
+         while(j > 0 && array[j - 1].compareTo(array[j]) > 0) {
+            array[j- 1] = array[j];
+            j = j - 1;
+         }
+         i = i + 1;
+      }
    }
 
    ///////////////////////////////////////////
