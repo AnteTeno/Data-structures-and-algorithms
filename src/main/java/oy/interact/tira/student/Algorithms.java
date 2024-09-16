@@ -15,12 +15,12 @@ public class Algorithms {
    public static <T extends Comparable<T>> void insertionSort(T[] array) {
       // TODO: Implement this.
 
-      int i = 1;
+      int i = 0;
       while(i < array.length) {
          T current_element = array[i];
          int j = i - 1;
 
-         while(j > 0 && array[j].compareTo(current_element) > 0) {
+         while(j >= 0 && array[j].compareTo(current_element) > 0) {
             array[j + 1] = array[j];
             j = j - 1;
          }
@@ -35,12 +35,12 @@ public class Algorithms {
 
    public static <T extends Comparable<T>> void insertionSort(T[] array, int fromIndex, int toIndex) {
       // TODO: Implement this.
-      for(int i = fromIndex + 1; i <= toIndex; i++) {
+      for(int i = fromIndex + 1; i < toIndex; i++) {
          T current_element = array[i];
          int j = i - 1;
 
          while(j >= fromIndex && array[j].compareTo(current_element) > 0) {
-            array[j] = array[j + 1];
+            array[j + 1] = array[j];
             j = j - 1;
          }
          array[j + 1] = current_element;
