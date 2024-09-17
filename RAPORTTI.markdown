@@ -38,6 +38,20 @@ Alaluvut jokaisen tehtävän raportille löydät alta.
 
 ## 01-TASK
 
+Tehtävän aloittaminen oli suhteellisen vaikee, mutta sen jälkeen kun havainnollisti tehtävää paperille tehtävä helpottui. Etenkin miten elementit vaihtavat paikkaa ja miksi pitää olla väliaikainen muistipaikka yhdelle elementille. Esim vasen--> väliaikainen, sitten vasen --> oikea ja oikea ---> väliaikainen. Eli toisin sanoin logiikan ymmärtämiseen meni tovi, ja syntaxia piti opetella uudestaan. Piti katsoa esimerkiksi miten for ja while loopit kirjoittettiinkaan Javalla. Tehtävän toteuttamisjärjestys oli kuitenkin todella selkeä minulle. Tiesin, että ensin selvitän logiikan, sitten kirjoitan koodin ja lopuksi testaan. Reversealgoritmin logiikan miettiminen ja koodin kirjoittaminen sujui mutkitta. Oli jo helpompi hahmottaa logiikka, kun oli tehnyt ensimmäisen askeleen task 1 markdownista.
+
+Aikakompleksisuus luokista:
+
+Tehdään oletuksena, että meillä on "huonoin tapaus" eli kaikki alkiot ovat päin vastaisessa paikassa missä niiden kuuluisi olla. esim. [3, 2 ,1].
+Lajittelualgoritmihan toimii siten, että se aloittaa ensimmäisestä indeksistä ja katsoo seuraavaan ja vertaa onko seuraava isompi. Jos on, niin se siirtää nykyisen seuraavan paikalle ja seuraavan nykyisen paikalle. Jos on 7 pitkä lista, jossa kaikki ovat oletuksen mukaisessa paikassa (huonoin tilanne), niin siirtoja on ![Kuva](kuva-7-summa.png)
+Kuvaaja: ![Kuvaaja](kuvaaja.png) 
+
+Voimme havainnollistamisesta huomata, että aikakompleksisuus on exponentiaalinen koska kuvaajalla ei esiinny suoraa.
+
+Reverse -algoritmin tein siten, että vaihdoin vain aina vasemmanpointterin ja oikean pointterin paikkaa vastaikkain joka kierroksella. Eli joka kierroksella tulee kaksi siirtoa, ja voimme huomata, että kun kasvatetaan jonoa niin siirtojen määrä, muuttuu lineaarisesti jononpituuteen verrattuna.
+
+Tilanteessa, jossa taulukko on jo valmiiksi nousevassa järjestyksessä, ja se aiottaan laskevaan järjestykseen Reverse -algoritmi on parempi. Koska jos pituutta lisätään vaikka 200 niin siirtojen määrä on 400, mutta Lajittelualgoritmilla siirtojen määrä olisi 20 100. Eli 20 kertaa enemmän siirtoja kuin Reverse -algoritmilla.
+
 ## 02-TASK
 
 ## 03-TASK
