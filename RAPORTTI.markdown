@@ -53,7 +53,21 @@ Reverse -algoritmin tein siten, että vaihdoin vain aina vasemmanpointterin ja o
 Tilanteessa, jossa taulukko on jo valmiiksi nousevassa järjestyksessä, ja se aiottaan laskevaan järjestykseen Reverse -algoritmi on parempi. Koska jos pituutta lisätään vaikka 200 niin siirtojen määrä on 400, mutta Lajittelualgoritmilla siirtojen määrä olisi 20 100. Eli 20 kertaa enemmän siirtoja kuin Reverse -algoritmilla.
 
 ## 02-TASK
+Tehtävän tekeminen oli opettavainen kokemus, jossa oppi paljon sekä ohjelmoinnista että algoritmien toiminnasta. Erityisesti sain syvempää ymmärrystä siitä, miten erilaiset lajittelu- ja hakualgoritmit toimivat ja miten niitä voidaan hyödyntää käytännön sovelluksissa.
 
+Vaikeinta oli ymmärtää lajittelu- ja hakualgoritmien logiikka ja miten aikakompleksisuus vaihtelee tiedostojen koon ja järjestyksen mukaan.
+
+Suoritusajan analyysi:
+
+Nopeat ja hitaita tilanteita
+
+Nopeat tilanteet johtuu siitä, että data on lajiteltu tai sitten käytetään tehokasta algoritmia.
+
+Hitaat tilanteet johtuvat huonosti järjestetyistä datoista ja huonoista algoritmeistä.
+
+Jos aineisto on valmiiksi lajiteltuna ja haluat vaihtaa alkioiden järjestyksen päinvastaiseksi, käytän mieluummin reverse-algoritmia. Tämä johtuu siitä, että käänteinen järjestys voidaan saavuttaa O(n) aikakompleksisuudella, kun taas lajittelu vie O(n log n) aikaa.
+
+Toteutettuja hakualgoritmeja, kuten get ja indexOf kutsutaan lineaarisiksi, koska ne käyvät läpi taulukon alkiot yksi kerrallaan. Eli ne vertaavat joka elementtiä hakuehtoon, mikä tekee niiden aikakompleksisuus luoksata O(n):n. Eli suoritusaika kasvaa lineaarisesti datan koon kanssa.
 ## 03-TASK
 
 ## 04-TASK
