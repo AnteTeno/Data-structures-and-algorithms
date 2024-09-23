@@ -55,8 +55,19 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 
 	@Override
 	public E get(E element) throws IllegalArgumentException {
-		throw new NotYetImplementedException("Task 02-TASK on linear search not yet implemented");
+		if (element == null) {
+			throw new IllegalArgumentException("Key cannot be null");
+		}
+
+		for (int i = 0; i < count; i++) {
+			if (array[i] != null && array[i].equals(element)) {
+				return array[i];
+			}
+		}
+
+		throw new IllegalArgumentException("Element not found in container");
 	}
+
 
 	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
@@ -64,9 +75,20 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 	}
 
 	@Override
-	public int indexOf(E element, Comparator<E> usingComparator) {
-		throw new NotYetImplementedException("Task 02-TASK on linear search not yet implemented");
+	public int indexOf(E element, Comparator<E> usingComparator) throws IllegalArgumentException {
+		if (element == null) {
+			throw new IllegalArgumentException("Key cannot be null");
+		}
+
+		for (int i = 0; i < count; i++) {
+			if (array[i] != null && array[i].compareTo(element) == 0) {
+				return i;
+			}
+		}
+
+		return -1; 
 	}
+
 
 	@Override
 	public E remove(E element) throws IllegalArgumentException {
@@ -109,13 +131,25 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 
 	@Override
 	public int findIndex(Predicate<E> searcher) {
-		throw new NotYetImplementedException("Task 02-TASK on linear search not yet implemented");
+		for (int i = 0; i < count; i++) {
+			if (array[i] != null && searcher.test(array[i])) {
+				return i; 
+			}
+		}
+		return -1; 
 	}
+
 
 	@Override
 	public E find(Predicate<E> searcher) {
-		throw new NotYetImplementedException("Task 02-TASK on linear search not yet implemented");
+		for (int i = 0; i < count; i++) {
+			if (array[i] != null && searcher.test(array[i])) {
+				return array[i]; 
+			}
+		}
+		return null; 
 	}
+
 
 	@Override
 	public int size() {
