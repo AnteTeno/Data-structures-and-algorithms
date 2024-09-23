@@ -196,13 +196,18 @@ public class Coder implements Comparable<Coder> {
 	 */
 	@Override
 	public int compareTo(Coder another) {
+
 		int nameComparison = getLastName().compareTo(another.getLastName());
 
-		if(nameComparison == 0) {
-			return nameComparison = getFirstName().compareTo(another.getFirstName());
+		
+		if (nameComparison == 0) {
+			return getFirstName().compareTo(another.getFirstName());
 		}
+
+		
 		return nameComparison;
-	}
+}
+
 
 	/**
 	 * You need to implement this in Exercise 8 on hash tables. No need to implement

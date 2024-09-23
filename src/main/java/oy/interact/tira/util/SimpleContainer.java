@@ -173,6 +173,7 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 	@Override
 	public void reverse() {
 		// TODO: Call Algorithms.reverse here
+		Algorithms.reverse(array, 0, count -1);
 	}
 
 	@Override
@@ -185,8 +186,8 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 		// TODO: call your sorting algorithm with array, update sorted status of this container!
 		// You may want to check if the array has any elements before calling sort.
 		// Also note that the array here has elements only between 0..<count!
-		if(array.length != 0 && count > 0) {
-			Algorithms.insertionSort(array, 0, count);
+		if(count > 0) {
+			Algorithms.insertionSort(array, 0, count - 1);
 
 			sorted = true;
 		}
@@ -197,6 +198,14 @@ public class SimpleContainer<E extends Comparable<E>> implements TIRAContainer<E
 		// TODO: call your sorting algorithm with array, update sorted status of this container!
 		// You may want to check if the array has any elements before calling sort.
 		// Also note that the array here has elements only between 0..<count!
-	}
 
+		 
+		if(count > 0) {
+			Algorithms.insertionSort(array,0 ,count - 1, usingComparator);
+
+			sorted = true;
+		}
+		
+
+	}
 }
