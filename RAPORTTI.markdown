@@ -68,6 +68,8 @@ Hitaat tilanteet johtuvat huonosti järjestetyistä datoista ja huonoista algori
 Jos aineisto on valmiiksi lajiteltuna ja haluat vaihtaa alkioiden järjestyksen päinvastaiseksi, käytän mieluummin reverse-algoritmia. Tämä johtuu siitä, että käänteinen järjestys voidaan saavuttaa O(n) aikakompleksisuudella, kun taas lajittelu vie O(n log n) aikaa.
 
 Toteutettuja hakualgoritmeja, kuten get ja indexOf kutsutaan lineaarisiksi, koska ne käyvät läpi taulukon alkiot yksi kerrallaan. Eli ne vertaavat joka elementtiä hakuehtoon, mikä tekee niiden aikakompleksisuus luoksata O(n):n. Eli suoritusaika kasvaa lineaarisesti datan koon kanssa.
+
+ ![Kuvaaja2](kuvaaja2.png)
 ## 03-TASK
 
 ## 04-TASK
