@@ -128,47 +128,124 @@ public class Algorithms {
    }
 
    public static <T extends Comparable<T>> int binarySearch(T aValue, T[] fromArray, int fromIndex, int toIndex) {
-      return binarySearchRecursive(aValue, fromArray, fromIndex, toIndex - 1);
-   }
+      
+      if (fromIndex < 0 || toIndex > fromArray.length || fromIndex >= toIndex) {
+          throw new IllegalArgumentException("Invalid indices");
+      }
+      return binarySearchRecursive(aValue, fromArray, fromIndex, toIndex);
+  }
 
    public static <T extends Comparable<T>> int binarySearch(T aValue, T[] fromArray, int fromIndex, int toIndex, BSearchImplementation impl) {
       if (impl == BSearchImplementation.RECURSIVE) {
          return binarySearchRecursive(aValue, fromArray, fromIndex, toIndex - 1);
+      } else if(impl == BSearchImplementation.ITERATIVE) {
+         return binarySearchIterative(aValue, fromArray, fromIndex, toIndex - 1);
       }
       // TODO: IF implementing iterative binary search, call that here.
       return -1;
    }
 
    public static <T extends Comparable<T>> int binarySearchRecursive(T aValue, T[] fromArray, int fromIndex, int toIndex) {
-      return -1;
-   }
+      if (fromIndex > toIndex) {
+          return -1; 
+      }
+  
+      int middle = fromIndex + (toIndex - fromIndex) / 2;
+      int comparisonResult = fromArray[middle].compareTo(aValue);
+      
+      
+      if (comparisonResult == 0) {
+          return middle; 
+      } else if (comparisonResult < 0) {
+          return binarySearchRecursive(aValue, fromArray, middle + 1, toIndex);
+      } else {
+          return binarySearchRecursive(aValue, fromArray, fromIndex, middle);
+      }
+  }
+  
 
    ///////////////////////////////////////////
    // Binary search using a Comparator
    ///////////////////////////////////////////
 
    public static <T> int binarySearch(T aValue, T[] fromArray, int fromIndex, int toIndex, Comparator<T> comparator) {
-      return -1;
-   }
-
-   public static <T> int binarySearch(T aValue, T[] fromArray, int fromIndex, int toIndex, Comparator<T> comparator, BSearchImplementation impl) {
-      if (impl == BSearchImplementation.RECURSIVE) {
-         return binarySearchRecursive(aValue, fromArray, fromIndex, toIndex - 1, comparator);
+      while (fromIndex < toIndex) {
+          int middle = fromIndex + (toIndex - fromIndex) / 2;
+          int comparisonResult = comparator.compare(fromArray[middle], aValue);
+  
+          if (comparisonResult == 0) {
+              return middle;
+          } else if (comparisonResult < 0) {
+              return binarySearchRecursive(aValue, fromArray, middle + 1, toIndex, comparator); 
+          } else {
+            binarySearchRecursive(aValue, fromArray, fromIndex, middle, comparator); 
+          }
       }
-      // TODO: IF implementing iterative binary search, call that here.
-      return -1;
-   }
+      return -1; 
+  }
 
-   public static <T> int binarySearchRecursive(T aValue, T[] fromArray, int fromIndex,
-         int toIndex, Comparator<T> comparator) {
-      // TODO: Recursive implementation
+   public static <T> int binarySearch(T aValue, T[] fromArray, int fromIndex, int toIndex, BSearchImplementation impl, Comparator<T> comparator) {
+      if (impl == BSearchImplementation.RECURSIVE) {
+          return binarySearchRecursive(aValue, fromArray, fromIndex, toIndex - 1, comparator);
+      } else if (impl == BSearchImplementation.ITERATIVE) {
+          return binarySearchIterative(aValue, fromArray, fromIndex, toIndex - 1, comparator);
+      }
       return -1;
    }
+   public static <T> int binarySearchRecursive(T aValue, T[] fromArray, int fromIndex, int toIndex, Comparator<T> comparator) {
+      
+      if (fromIndex >= toIndex) {
+          return -1; 
+      }
+   
+      int middle = fromIndex + (toIndex - fromIndex) / 2;
+
+      int comparisonResult = comparator.compare(fromArray[middle], aValue);
+      if (comparisonResult == 0) {
+          return middle; 
+      } else if (comparisonResult < 0) {
+          return binarySearchRecursive(aValue, fromArray, middle + 1, toIndex, comparator);
+      } else {
+          return binarySearchRecursive(aValue, fromArray, fromIndex, middle, comparator);
+      }
+  }
 
    public static <T> int binarySearchIterative(T aValue, T[] fromArray, int fromIndex, int toIndex, Comparator<T> comparator) {
       // TODO: Iterative implementation if grade interests you:
+
+      while(fromIndex <= toIndex) {
+
+         int middle = fromIndex +(toIndex - fromIndex ) / 2;
+
+         int comparisonResult = comparator.compare(fromArray[middle], aValue);
+
+         if(comparisonResult == 0) {
+            return middle;
+         } else if (comparisonResult > 0) {
+            toIndex = middle;
+         } else {
+            fromIndex = middle + 1;
+         }
+      }
       return -1;
    }
+   public static <T extends Comparable<T>> int binarySearchIterative(T aValue, T[] fromArray, int fromIndex, int toIndex) {
+      while(fromIndex <= toIndex) {
+
+         int middle = fromIndex +(toIndex - fromIndex ) / 2;
+
+         int comparisonResult = fromArray[middle].compareTo(aValue);
+
+         if(comparisonResult == 0) {
+            return middle;
+         } else if (comparisonResult > 0) {
+            toIndex = middle;
+         } else {
+            fromIndex = middle + 1;
+         }
+      }
+      return -1;
+  }
 
    public enum FastSortAlgorithm {
       QUICKSORT,
