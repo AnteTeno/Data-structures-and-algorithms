@@ -6,7 +6,7 @@ package oy.interact.tira.util;
  * 
  */
 public interface StackInterface<E> {
-
+   
    /**
     * For querying the capacity of the stack.
     * Time complexity is O(1).

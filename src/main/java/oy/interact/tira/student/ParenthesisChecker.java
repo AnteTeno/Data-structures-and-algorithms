@@ -36,6 +36,9 @@ public class ParenthesisChecker {
     * @throws ParenthesesException if the parentheses did not match as intended.
     */
     public static int checkParentheses(StackInterface<Character> stack, String fromString) throws ParenthesesException {
+      int count = 0;
+      int lineNumber = 1;
+      int columnNumber = 0;
       // TODO (for grade 1, see instructions for higher grades):
       // for each character in the input string
       //   if character is an opening parenthesis -- one of "([{"
@@ -48,6 +51,53 @@ public class ParenthesisChecker {
       //         throw an exception, wrong kind of parenthesis were in the text (e.g. "asfa ( asdf } sadf")
       // if the stack is not empty after all the characters have been handled
       //   throw an exception since the string has more opening than closing parentheses.
-      return -1;
+      if(fromString != null && !fromString.isEmpty()) {
+         for(int i = 0; i < fromString.length(); i++) {
+            char current = fromString.charAt(i);
+            columnNumber++;
+            
+            if(current == '\n') {
+               lineNumber++;
+               columnNumber = 0;
+            }
+
+            if(current == '(' || current == '[' || current == '{') {
+               count++;
+               stack.push(current);
+            }
+
+             else if (current == ')' || current == ']' || current == '}') {
+               count++;
+               if(!stack.isEmpty()) {
+                  char topChar = stack.pop();
+                  if(!checkMatch(current, topChar)) {
+                     throw new ParenthesesException("Parenthesis didn't match.", lineNumber, columnNumber, ParenthesesException.PARENTHESES_IN_WRONG_ORDER);
+                  }
+               } else {
+                  throw new ParenthesesException("Parenthesis didn't match.", lineNumber, columnNumber, ParenthesesException.TOO_MANY_CLOSING_PARENTHESES);
+               }
+
+            }
+
+         } 
+         if(!stack.isEmpty()) {
+            throw new ParenthesesException("Parenthesis didn't match.", lineNumber, columnNumber, ParenthesesException.TOO_MANY_OPENING_PARENTHESES);
+         }
+
+      }
+
+      return count;
    }
+
+   private static boolean checkMatch(char closing, Character opening) {
+
+      if(opening == '[' && closing == ']' || opening == '(' && closing == ')' || opening == '{' && closing == '}') {
+         return true;
+      }
+      return false;
+   } 
 }
+
+
+
+
