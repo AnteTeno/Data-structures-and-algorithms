@@ -71,6 +71,10 @@ Toteutettuja hakualgoritmeja, kuten get ja indexOf kutsutaan lineaarisiksi, kosk
 
  ![Kuvaaja2](kuvaaja3.png)
 ## 03-TASK
+![Kuvaaja3](Kuvaaja4.png)
+
+Kuvasta ilmenee selvästi, että täyttöaika kasvaa lineaarisesti koon n kasvaessa eli sen aikakompleksisuusluokka on O(n). Lajitteluaika kasvaa myös syötteen koon kasvaessa, mutta nopeammin kuin lineaarisesti. Lajitteluaika noudattaa O(n log n) aikakompleksisuutta. Hakuaika suoritusajat ovat huomattavasti pienempiä kuin lahittelussa, koska binäärihaun aikakompleksiuus on O(log n).
+
 
 ## 04-TASK
 
