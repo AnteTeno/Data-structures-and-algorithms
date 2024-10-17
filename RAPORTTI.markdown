@@ -77,6 +77,8 @@ Kuvasta ilmenee selvästi, että täyttöaika kasvaa lineaarisesti koon n kasvae
 
 
 ## 04-TASK
+Opin pinoista ja miten pinojen logiikka toimii sekä miten sitä toteutetaan koodissa. Tehtäväni vastaa aikakompleksisuus vaatimusta 0(1), sillä toteutukseni ei sisällä looppeja. 
+Tehtävässä helpointa oli StackImplementationin tekeminen ja vaikeinta oli ParenthesisCheckerin tekeminen. Meni hetki ymmärtää, mitä tehtävällä haetaan ja koodikin oli hiukan hankalaa aluksi. Tuli tehtyä paljon huolimattomuus virheitä etenkin alussa, kun en tehnyt itselleni apu "funktiota", joka tarkistaa "mätsin".
 
 ## 05-TASK
 
