@@ -14,7 +14,7 @@ public interface QueueInterface<E> {
     * @return The number of elements the queue can currently hold.
     */
    public int capacity();
-   
+      
    /**
     * Add an element to the queue.
     * Time complexity is O(1), unless an array based implementation is used,
