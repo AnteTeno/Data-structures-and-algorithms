@@ -1,6 +1,6 @@
 package oy.interact.tira.student;
 
-import java.util.Queue;
+
 
 import oy.interact.tira.util.QueueInterface;
 
@@ -82,6 +82,7 @@ public class QueueImplementation<E> implements QueueInterface<E> {
         return queueValue;
     }
 
+    
     @Override
     public E element() throws IllegalStateException {
         if(isEmpty()) {
