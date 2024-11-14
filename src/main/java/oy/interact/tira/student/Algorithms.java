@@ -281,12 +281,7 @@ public class Algorithms {
       }
    }
 
-   private static <E> Partition(E[] array, int low, int high) {
-      pivot = array[low];
-      leftwall = low;
-   }
-
-
+  
    
 
    public static <E> int Partition(E[] array, int low, int high, Comparator<E> comparator) {
