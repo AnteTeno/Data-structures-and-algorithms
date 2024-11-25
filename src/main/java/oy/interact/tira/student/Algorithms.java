@@ -184,7 +184,7 @@ public class Algorithms {
       return -1; 
   }
 
-   public static <T> int binarySearch(T aValue, T[] fromArray, int fromIndex, int toIndex, BSearchImplementation impl, Comparator<T> comparator) {
+   public static <T> int binarySearch(T aValue, T[] fromArray, int fromIndex, int toIndex,  Comparator<T> comparator, BSearchImplementation impl) {
       if (impl == BSearchImplementation.RECURSIVE) {
           return binarySearchRecursive(aValue, fromArray, fromIndex, toIndex - 1, comparator);
       } else if (impl == BSearchImplementation.ITERATIVE) {

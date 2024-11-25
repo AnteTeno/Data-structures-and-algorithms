@@ -19,7 +19,7 @@ import oy.interact.tira.util.StackInterface;
  * 
  */
 @DisplayName("Testing the stack with two structured files with parentheses.")
-public class ParenthesisMultiLineQuotationsTests {
+class ParenthesisMultiLineQuotationsTests {
 
    static int result = 0;
 
@@ -72,10 +72,10 @@ public class ParenthesisMultiLineQuotationsTests {
          int count = ParenthesisChecker.checkParentheses(stackToTest, toCheck);
          assertEquals(10, count, "Test file has 10 parentheses, result does not match");
       } catch (ParenthesesException ex1) {
-         assertEquals(15, ex1.lineNumber, "Faulty line is 15, not something else");
-         assertEquals(41, ex1.columnNumber, "Faulty line is 15, not something else");
-         assertEquals(ParenthesesException.PARENTHESES_IN_WRONG_ORDER, ex1.code,
-               "Error code in ParenthesesException must match");
+         assertEquals(9, ex1.lineNumber, "Faulty line is 9, not something else");
+         assertEquals(ParenthesesException.QUOTATION_ERROR, ex1.code,
+               "Error code in ParenthesesException must be quotation error in this case");
+         assertEquals(14, ex1.columnNumber, "Faulty column is 15, not something else");
       } catch (Exception ex2) {
          fail("Must not throw any other exception either");
       }

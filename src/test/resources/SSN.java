@@ -1,4 +1,4 @@
-package oy.interact.tira.resources;
+
 
 /**
  * A class to handle Finnish social security numbers.
