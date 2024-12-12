@@ -1,6 +1,6 @@
 package oy.interact.tira.student;
 
-import java.lang.reflect.Array;
+
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -109,16 +109,17 @@ public class BinarySearchTreeContainer<K extends Comparable<K>, V> implements TI
     @Override
     public Pair<K, V>[] toArray() throws Exception {
         if (root == null) {
-            return (Pair<K, V>[]) Array.newInstance(Pair.class, 0);
+            return (Pair<K, V>[]) new Pair[0];
         }
-  
-        Pair<K, V>[] array = (Pair<K, V>[]) Array.newInstance(Pair.class, count);
-    
-       
+
+        @SuppressWarnings("unchecked")
+        Pair<K, V>[] array = (Pair<K, V>[]) new Pair[count];
+
         inOrderTraversal(root, array, new int[]{0});
-    
+
         return array;
     }
+
     
     
     private void inOrderTraversal(TreeNode<K, V> node, Pair<K, V>[] array, int[] index) {

@@ -77,8 +77,20 @@ Kuvasta ilmenee selvästi, että täyttöaika kasvaa lineaarisesti koon n kasvae
 
 
 ## 04-TASK
-Opin pinoista ja miten pinojen logiikka toimii sekä miten sitä toteutetaan koodissa. Tehtäväni vastaa aikakompleksisuus vaatimusta 0(1), sillä toteutukseni ei sisällä looppeja. 
-Tehtävässä helpointa oli StackImplementationin tekeminen ja vaikeinta oli ParenthesisCheckerin tekeminen. Meni hetki ymmärtää, mitä tehtävällä haetaan ja koodikin oli hiukan hankalaa aluksi. Tuli tehtyä paljon huolimattomuus virheitä etenkin alussa, kun en tehnyt itselleni apu "funktiota", joka tarkistaa "mätsin".
+Tässä tehtävässä opin paljon pinojen toimminnasta ja niiden toteutuksesta koodissa. Opin, miten pinon perustoiminnot toteuteetaan ja implementoidaan kuten push ja pop. Lisäksi harjoittelin aikakompleksisuudien analysointia ja ymmärsin vaatimukset, kuten esimerkiksi O(1) aikavaativuuden.
+
+Helpoin osa oli StackImplementation osio, jossa tehtiin pinon perustoimia. Metodit oli helppo tehdä hyvien ohjeiden myötä. ParenthesisChecker oli hankalampi toteuttaa, koska tehtävä vaati ymmärrystä ongelmasta sekä siitä miten pinoja voidaan hyödyntää tässä ongelmassa.
+
+Tehtävässä oli erityisen tärkeää varmistaa, että kaikkien pinoon liittyvien toimintojen aikakompleksisuus täyttää annetut vaatimukset. Tämän takia analysoin jokaisen algoritmin erikseen:
+
+1. Push toteutuksessa lisätään uusi alkio pinon päälle. Kopioidaan siis itemArray- taulukkoon alkiot ja jos se täyttyy, niin kutsutaan reallocatea. Reallocate on O(n), mutta push on ilman sitä O(1).
+2. Pop toteutuksessa poistetaan pinon ensimmäinen eli ylin alkio. Eli asetetaan ylin alkio nulliksi ja vähennetään laskurista, joka laskee pinon alkioiden määrän. Tämän aika kompleksisuus on O(1).
+3. Peek "kurkistaa" pinon päällimäistä arvoa eli palauttaa sen. O(1)
+4. IsEmpty tarkistaa onko pino tyhjä. Tarkistetaan laskuri tai pinon ensimmäinen arvo. Aikakompleksiuus on siis O(1).
+5. Clear tyhjentää pinon laittamalla uuden tyhjän taulukon ja tyhjentämällä laskurin "count". Aikakompleksisuus on siis O(1).
+
+ParenthesisCheckerin sulkujen tarkastamiseen on silmukka, joka iteroi merkkijononläpi. Silmukan takia aikakompleksuus on O(n), n riippuu merkkijonon pituudesta. StackImplementation funktiot joita tässä käytetään (push ja pop) ovat aikakompleksisuudelta O(1) ja apufunktio, joka tarkistaa ovatko sulut pareja on myös O(1).
+
 
 ## 05-TASK
 
