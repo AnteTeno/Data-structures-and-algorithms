@@ -93,8 +93,31 @@ ParenthesisCheckerin sulkujen tarkastamiseen on silmukka, joka iteroi merkkijono
 
 
 ## 05-TASK
+Linkitetyn listan perustoimintojen, kuten enqueue ja dequeue oli suhteellisen helppoa ja suoraviivaista. Myös muut metodit kuten isEmpty ja size olivat erittäin yksinkertaisia ja helppoja toteuttaa.
+Linkittetty lista muistikompleksisuus on hyvä. Se käyttää vain muistia tarvittavalle määrälle alkioita, koska solmut luodaan dynaamisesti. Ei ole tarvetta varata suurta määrää tilaa etukäteen. Huono puoli on että jokainen solmu sisältää pointterin seuraavaan solmuun, joka lisää muistin käyttöä. Aikakompleksisuus on myös hyvä, sillä enqueue ja dequeue aikakompleksisuusluokka on O(1)n koska ne lisäävät ja poistavat alkion listan alusta tai lopusta. Huonoa on satunnaishaku, jonka luokitus on O(n), koska iteroidaan koko lista läpi haluttuun indeksiin. 
+
+Linkitetty listan vasta vertailuksi taulukko pohjaisessa hyvät puolet: Ei tarvita lisämuistia viitteille, enqueue ja dequeue ovat O(1), paitsi kun taulukkoa on laajennattava reallocationilla. Huonot puolet: Taulukko on varattava kiinteän kokoisena tai laajennattavana, eli käytössä voi olla turha muistia jos taulukkoon on varattu liikaa suhteessa tarpeeseen. Myös uudelleen asettelun aikakompleksisuusluokitus on O(n).
+
+Aikakompleksisuusluokat linkitetyn listan toteutuksessa:
+enqueue: Normaalisti O(1), mutta uudelleenasettelussa O(n).
+dequeue: O(1), koska vain yksi alkio poistetaan.
+element: O(1), koska palautetaan suoraan viite pään alkiolle.
+isEmpty ja size: Molemmat O(1), koska ne vain tarkastaa ja eivät käytännlssä tee mitään taulukolle.
+
 
 ## 06-TASK
+Tehtävän tekeminen auttoi ymmärtään lajittelualgoritmeista enemmän ja opin myös niiden toimintaperiaatteeista. Myös opin tehokkuudesta eri algoritimien välillä paljon. Opin miten Quicksort toimii ja miksi sen
+suorituskyky riippuu pivotista. Opin myös aikakompleksisuuden analysoinnista ja sekä graafisesta visualisoinnista. Vaikeaa oli testitulosten analysointi suurilla aineistolla. Siinä kestää kauan ja on haastavaa tulkita, miten algoritmin ominaisuudet kuten rekursiivisuus vaikuttaa sen suorituskykyyn ja graafien tuottaminen oikein on myös hankalaa. Helppoa oli testien ajaminen ja vertailu. 
+
+Testitulosten analyysi
+
+CoderSlowComparatorTests mittaa perinteisen lisäyslajittelun suorituskykyä, jonka aikakompleksisuusluokka on O(n^2). CoderFastComparatorTests testaa Quicksorttia, jonka aikakompleksisuusluokitus on O(n log n). Alla kuva:
+
+![Kuvaaja4](task6.png)
+
+Kuvista huomaa että 50 000 aineiston kohalla hidas algoritmi alkaa jäämään jälkeen Quicksorttiin verrattuna. 100 000 aineiston kohdalla ero on jo huomattava, kun Quicksortilla menee hiukan alle 200ms lajittelussa niin hitaalla algoritmilla menee 500 000 tuhatta ja risat. Testit vahvistavat, että quicksort toimii oikein ja huomattavasti tehokkaammin kuin perus lisäyslajittelun. Lisäyslajittelun aikakompleksisuus per elementti kasvaa exponentiaalisesti, kun taas Quicksortilla se kasvaa tasaisemmin muttei kuitenkaan lineaarisesti.
+
+
 
 ## 07-TASK
 
