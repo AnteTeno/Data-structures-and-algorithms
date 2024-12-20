@@ -1,7 +1,5 @@
 package oy.interact.tira.grade_1.task_8;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,6 +13,7 @@ import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONTokener;
+import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import oy.interact.tira.model.Coder;
@@ -35,7 +34,7 @@ class CoderHashTests {
 	};
 
 	@Test
-	void testHashUniqueness() {
+	void testHashUniqueness() throws IOException {
 		try {
 			currentIndex = 0;
 			while (currentIndex < testFiles.length) {
@@ -56,14 +55,18 @@ class CoderHashTests {
 						stringHashes[index] = coder.getId().hashCode();
 						coderHashes[index] = coder.hashCode();
 						index++;
-					}
-					// Count how many times the coder.hashCode is identical to coder.getId().hashCode()
+					}	
+					
+					//Count how many times the coder.hashCode is identical to coder.getId().hashCode()
 					int sameHashCount = 0;
 					for (index = 0; index < stringHashes.length; index++) {
 						if (stringHashes[index].equals(coderHashes[index])) {
 							sameHashCount++;
+							
 						}
+						System.out.println(sameHashCount);
 					}
+					
 					if (sameHashCount == stringHashes.length) {
 						fail("You have not implemented Coder.hashCode() correctly, but just call id.hashCode(). READ THE INSTRUCTIONS!");
 					}
@@ -85,13 +88,15 @@ class CoderHashTests {
 				System.out.format("  For %d coders, there were %d duplicate hashes%n%n", coders.length, coders.length - hashes.size());
 				currentIndex++;
 			}
-		} catch (OutOfMemoryError oom) {
+		 } catch (OutOfMemoryError oom) {
 			System.out.println("\n*** ERROR: Run out of memory while handling test json files\n");
-		} catch (Exception e) {
+		 } catch (Exception e) {
 			e.printStackTrace();
 			fail("*** Could not execute tests: " + e.getMessage());
-		}
+		} 
+		
 	}
+	
 
 	private Coder[] readCodersFromFile(String fileName)
 			throws IOException {

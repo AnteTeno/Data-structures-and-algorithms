@@ -1,6 +1,8 @@
 package oy.interact.tira.factories;
 
 import oy.interact.tira.NotYetImplementedException;
+import oy.interact.tira.student.BinarySearchTreeContainer;
+import oy.interact.tira.student.HashTableContainer;
 import oy.interact.tira.util.TIRAKeyedContainer;
 
 public class HashTableFactory {
@@ -9,7 +11,8 @@ public class HashTableFactory {
 	}
 
 	public static <K extends Comparable<K>, V> TIRAKeyedContainer<K,V> createHashTable() {
-		throw new NotYetImplementedException("Task 08-TASK about Hashtables not yet implemented");
+		return new HashTableContainer<K, V>();
 	}
-
 }
+
+
