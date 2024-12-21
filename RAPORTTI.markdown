@@ -120,7 +120,29 @@ Kuvista huomaa että 50 000 aineiston kohalla hidas algoritmi alkaa jäämään 
 
 
 ## 07-TASK
+Tämän tehtävän aikana opin paljon etenkin BST:n rakenteen ja sen perustoiminnoiusta, BST:n perustoimintojen, kuten lisäyksen ja haun toteuttaminen syvensi ymmärrystäni rekursiivisista algoritmeistä ja opin uuden tietorakenteen. Syvydeen hallint ja se tasapainoitus oli keskeistä myös. Vaikeuksia aiheuttikin tasapainotuksen puute ja rekursiivisten ratkaisujen tehokkuus. On hankala toteuttaa monimutkaisia metodeja rekursiivisesti. Helppoa oli BST:n perusoperaatiot esimerkiksi lisäys ja haku.
 
+Testit ja niiden analysointi:
+
+Testituloksista ilmeni, että BST ja SimpleContainer toimivat odotetusti. BST:n lisäys ja hakutoiminnot suoritettiin seuraavasti:
+![Kuvaaja7](task7.png)
+
+Graafeista huomaa, että SimpleContainerin suorituskyky oli pienillä aineistoilla lähes identtinen BST:n kanssa, mutta isompien aineistojen kohdalla BST osoitti selvästi parempaa suorituskykyä haussa, mikä vastaa teoriaa, kun SimpleContainerin haku oli O(n), joka on hitaampi suuremmalla aineistolla. Aineiston perusteellä BST:n lisäyksen ja haun aikakompleksisuus on keskimäärin O(log n) ja pahimmillaan O(n).
+
+TIRA Coders käyttöliittymä oli intuitiivinen ja antoi selkeäb kuvan mittausten onnistumisista. 
+
+Syvyydestä huomasin sen verran testidatan avulla, että 100 kohteella puun syvyys on keskimäärin 7 ja 1000 kohteella 10. Toteutukseni maksimisyvyys poikkesi hieman ihanteesta, koska puu ei ole täydellisesti tasapainoinen. Esimerkiksi 100 kohteella maksimisyvyys oli 9 ja 1000 14.
 ## 08-TASK
+Opin tämän tehtävän aikana hajautustaulun eli hashtablen toteutuksesta. Sen toteutuksessa erityisesti tärkeitä oli kolarinhallinta ja hajautustaulun dynaaminen laajentaminen datan kasvaessa eli metodi reallocate().
+Hajautustaulut ovat erinomaisia haussa ja avainperusteisessa haussa. Siinä on vakio O(1) aikakompleksisuus, kuten get()- metodissa havaitaan. Lajittelut ovat hajautustaulussa tehottomampia verrattuna BST:hen, koska hajautustaulut eivät ole luonnostaan järjestyksessä.
 
+Suorituskyky mittaukset:
+![Kuvaaja8](task8.png)
+
+Graafeista näkyy, että hajautustaulun operaatiot skaalautuvat lineaarisesti, paitsi laajennuksen aikana. SimpleKeyedContaineri toiminnassa voi havaita tehottomuutta ja todennäköisesti kolarinhallinnan tai reallocaten heikkouksien takia. 
+
+Aikakompleksisuuksista:
+Hajatustaulu näyttää vakion aikakompleksisuudeen lisäykselle ja haulle O(1), hajautustaulun lajittelu vaatii, kun BST säilyttää luonnolisen järjestyksen, joka tekee sen hakutoiminnoista tehokkaita jopa suurilla aineistoilla.
+
+Haasteita oli kolarinhallinnassa, dynaamisessa laajennuksessa ja HashCode metodissa. Helppoa oli get ja find metodien koodaaminen, koska se oli suoraviivaista ja edellytti vain avainten vertailua. 
 ## 09-TASK
