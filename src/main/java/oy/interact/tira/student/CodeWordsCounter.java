@@ -2,6 +2,7 @@ package oy.interact.tira.student;
 
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Character.isLetter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
@@ -15,6 +16,7 @@ import oy.interact.tira.util.TIRAKeyedContainer;
 
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
+import java.util.Comparator;
 
 // Teachers: TODO: Decide what here is left for the students to implement.
 // E.g. forming the words based on rules.
@@ -79,43 +81,114 @@ public class CodeWordsCounter {
 		System.out.println("File: " + file.getAbsolutePath());
 		long start = System.currentTimeMillis();
 		for (int index = 0; index < content.length(); index++) {
-			// STUDENTS: TODO: Implement this pseudocode to fill the hash table with unique word counts
-			// from the source code file.
-			// 1. Get a code point at the index from content.
-			// 2. If the code point is a letter character...
-			//       2.1 Add it to the wordChars array to codeWordIndex and add one to codeWordIndex.
-			//    ...else we have a word break char and wordChars contains now a word:
-			//       2.2 If the array has 2 or more chars (do not count one char "words")...
-			//          2.2.1 Convert the array of chars to String object.
-			//          2.2.2 Convert the string to lowercase (we treat "char" and "CHAR" as one "char" word) 
-			//          2.2.3 Get the word count from the hashtable (word is key, returned value from hashtable is the count)
-			//          2.2.4 If we got null, hashtable does not have this word, then...
-			//             2.2.4.1 add the word with count 1 to the hashtable; word appears once so far.
-			//          2.2.5 ...else, word already appears in hash table, so
-			//             2.2.5.1 Add the word to hashtable with count increased by one
-			//                     (Remember that adding the same key to hashtable must update the value already in hashtable).
-			//       2.3 Reset the codeWordIndex to zero so next new word will start filling the wordChars array from the start.
+			char point = Character.toLowerCase(content.charAt(index));
+		
+			// Point is a letter, so continue the word
+			if (isLetter(point)) {
+				wordChars[codeWordIndex++] = point;
+				continue;
+			}
+		
+			// Word is rational
+			if (codeWordIndex > 2) {
+				String str = wordToString(wordChars);
+		
+				// Word is not added to hashtable yet
+				if (codeWords.get(str) == null) {
+					codeWords.add(str, 1);
+				}
+				// Word is already added to hashtable, so increase the count of the word
+				else {
+					int count = codeWords.get(str);
+					codeWords.add(str, count + 1);
+				}
+			}
+		
+			// Reset count and array of word
+			codeWordIndex = 0;
+			wordChars = new int[MAX_WORD_SIZE];
 		}
+		
 		cumulativeTimeInMilliseconds += System.currentTimeMillis() - start;
 	}
 
 	@SuppressWarnings("unchecked")
 	public Pair<String, Integer>[] topCodeWords(int topCount) throws Exception {
+		
 		if (null == codeWords) {
 			Pair<String, Integer>[] result = new Pair[1];	
 			result[0] = new Pair<>("Hashtable not implemented yet", 0);
 			return result;
 		}
-		// STUDENTS: TODO: Implement this pseudocode to get the top words sorted by frequency of use from hash table.
-		// 1. Get, from the hash table, pairs of all words and word counts from hash table to an array.
-		// 2. Use your fast sort algorithm to sort the array of pairs by word count, descending (!) order,
-		//    so that the word that is most frequent, is the first in the array.
-		// 3. Allocate a new array (let's call it result array) of size topCount,
-		//        or _smaller_ if the array has _less_ than topCount items.
-		//        Let's say the resulting new array size is n.
-		// 4. Put the first n items from the array of all pairs to this result array of size n.
-		// 5. Return the results array to caller.
-		return null; // TODO: remove this when done.
-	}
+		// Create word array in descending order
+		Pair<String, Integer>[] words = codeWords.toArray();
+		quickSort(words, 0, words.length - 1);
+		Algorithms.reverse(words);
+
+		// Set topCount to be smaller or equal to codeWord size
+		if (codeWords.size() < topCount) {
+			topCount = codeWords.size();
+		}
+
+		Pair<String, Integer>[] topWords = new Pair[topCount];
+
+		// Get top words of the words array
+		for (int i = 0; i < topCount; i++) {
+			topWords[i] = words[i];
+		}
+
+		return topWords;
+
+		}
+
+
+
+		public static <E> int Partition(Pair<String, Integer>[] array, int low, int high) {
+
+			Integer pivot = array[high].getValue();
+			int i = low-1;
+			
+			for(int j = low; j <= high -1; j++) {
+			   if(array[j].getValue() <= pivot) {
+				  i++;
+				  Pair<String, Integer> temp = array[i];
+				  array[i] = array[j];
+				  array[j] = temp;
+			   }
+			}
+	  
+			Pair<String, Integer> temp = array[i + 1];
+			array[i + 1] = array[high];
+			array[high] = temp;
+			
+			return i + 1;
+		 }
+	  
+		 public static <E> void quickSort(Pair<String, Integer>[] array, int low, int high) {
+			if(low < high) {
+			   int pivot = Partition(array, low, high);
+			   quickSort(array, low, pivot - 1);
+			   quickSort(array, pivot+1, high);
+			}
+		 }
+
+		 private String wordToString(int[] word) {
+			StringBuilder str = new StringBuilder();
+	
+			for (int character: word) {
+	
+				// Break the loop if character is not letter
+				if (!isLetter((char) character)) {
+					break;
+				}
+	
+				// Add the letter to string
+				str.append((char)character);
+			}
+	
+			return str.toString();
+		}
+	
+
 
 }
